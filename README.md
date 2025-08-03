@@ -1,70 +1,74 @@
-# GitHub Codespaces ♥️ React
+Take a video and replace the face in it with a face of your choice. You only need one image of the desired face. No dataset, no training.
 
-Welcome to your shiny new Codespace running React! We've got everything fired up and running for you to explore React.
+You can watch some demos [here](https://drive.google.com/drive/folders/1KHv8n_rd3Lcr2v7jBq1yPSTWM554Gq8e).
+A Stable Diffusion extension is also available, [here](https://github.com/s0md3v/sd-webui-roop).
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+![demo-gif](demo.gif)
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+## Disclaimer
 
-This project was bootstrapped for you with [Vite](https://vitejs.dev/).
+This software is meant to be a productive contribution to the rapidly growing AI-generated media industry. It will help artists with tasks such as animating a custom character or using the character as a model for clothing etc.
 
-## Available Scripts
+The developers of this software are aware of its possible unethical applications and are committed to take preventative measures against them. It has a built-in check which prevents the program from working on inappropriate media including but not limited to nudity, graphic content, sensitive material such as war footage etc. We will continue to develop this project in the positive direction while adhering to law and ethics. This project may be shut down or include watermarks on the output if requested by law.
 
-In the project directory, you can run:
+Users of this software are expected to use this software responsibly while abiding the local law. If face of a real person is being used, users are suggested to get consent from the concerned person and clearly mention that it is a deepfake when posting content online. Developers of this software will not be responsible for actions of end-users.
 
-### `npm start`
+### Licence/Commercial Use Disclaimer
+Roop uses a lot of third party libraries as well pre-trained models. The users should keep in mind that these third party components have their own license and terms.
 
-We've already run this for you in the `Codespaces: server` terminal window below. If you need to stop the server for any reason you can just run `npm start` again to bring it back online.
+## How to install?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000/](http://localhost:3000/) in the built-in Simple Browser (`Cmd/Ctrl + Shift + P > Simple Browser: Show`) to view your running application.
+### Basic
 
-The page will reload automatically when you make changes.\
-You may also see any lint errors in the console.
+It is more likely to work on your computer, but will be quite slow. Follow instructions for the basic installation [here](https://github.com/s0md3v/roop/wiki/1.-Installation).
 
-### `npm test`
+### Acceleration
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+If you own a capable GPU and are prepared to address any software problems, you have the option to activate such acceleration, which offers significantly enhanced speed. Once you finished the basic installation, you can follow the instructions for the acceleration installation [here](https://github.com/s0md3v/roop/wiki/2.-Acceleration).
 
-### `npm run build`
+## How to use?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### UI
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Executing `python run.py` command will launch this window:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![gui-demo](gui-demo.png)
 
-## Learn More
+Choose a face (image with desired face) and the target image/video (image/video in which you want to replace the face) and click on `Start`. Open file explorer and navigate to the directory you select your output to be in. You will find a directory named `<video_title>` where you can see the frames being swapped in realtime. Once the processing is done, it will create the output file. That's it.
 
-You can learn more in the [Vite documentation](https://vitejs.dev/guide/).
+## CLI
 
-To learn Vitest, a Vite-native testing framework, go to [Vitest documentation](https://vitest.dev/guide/)
+Additional command line arguments are given below. To learn out what they do, check the guide [here](https://github.com/s0md3v/roop/wiki/3.-Advanced-Options).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+options:
+  -h, --help                                                                 show this help message and exit
+  -s SOURCE_PATH, --source SOURCE_PATH                                       select an source image
+  -t TARGET_PATH, --target TARGET_PATH                                       select an target image or video
+  -o OUTPUT_PATH, --output OUTPUT_PATH                                       select output file or directory
+  --frame-processor FRAME_PROCESSOR [FRAME_PROCESSOR ...]                    frame processors (choices: face_swapper, face_enhancer, ...)
+  --keep-fps                                                                 keep target fps
+  --keep-frames                                                              keep temporary frames
+  --skip-audio                                                               skip target audio
+  --many-faces                                                               process every face
+  --reference-face-position REFERENCE_FACE_POSITION                          position of the reference face
+  --reference-frame-number REFERENCE_FRAME_NUMBER                            number of the reference frame
+  --similar-face-distance SIMILAR_FACE_DISTANCE                              face distance used for recognition
+  --temp-frame-format {jpg,png}                                              image format used for frame extraction
+  --temp-frame-quality [0-100]                                               image quality used for frame extraction
+  --output-video-encoder {libx264,libx265,libvpx-vp9,h264_nvenc,hevc_nvenc}  encoder used for the output video
+  --output-video-quality [0-100]                                             quality used for the output video
+  --max-memory MAX_MEMORY                                                    maximum amount of RAM in GB
+  --execution-provider {cpu} [{cpu} ...]                                     available execution provider (choices: cpu, ...)
+  --execution-threads EXECUTION_THREADS                                      number of execution threads
+  -v, --version                                                              show program's version number and exit
+```
 
-### Code Splitting
+Using the `-s/--source`, `-t/--target` and `-o/--output` argument will run the program in headless mode.
 
-This section has moved here: [https://sambitsahoo.com/blog/vite-code-splitting-that-works.html](https://sambitsahoo.com/blog/vite-code-splitting-that-works.html)
+## Credits
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://github.com/btd/rollup-plugin-visualizer#rollup-plugin-visualizer](https://github.com/btd/rollup-plugin-visualizer#rollup-plugin-visualizer)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://dev.to/hamdankhan364/simplifying-progressive-web-app-pwa-development-with-vite-a-beginners-guide-38cf](https://dev.to/hamdankhan364/simplifying-progressive-web-app-pwa-development-with-vite-a-beginners-guide-38cf)
-
-### Advanced Configuration
-
-This section has moved here: [https://vitejs.dev/guide/build.html#advanced-base-options](https://vitejs.dev/guide/build.html#advanced-base-options)
-
-### Deployment
-
-This section has moved here: [https://vitejs.dev/guide/build.html](https://vitejs.dev/guide/build.html)
-
-### Troubleshooting
-
-This section has moved here: [https://vitejs.dev/guide/troubleshooting.html](https://vitejs.dev/guide/troubleshooting.html)
+- [henryruhs](https://github.com/henryruhs): for being an irreplaceable contributor to the project
+- [ffmpeg](https://ffmpeg.org): for making video related operations easy
+- [deepinsight](https://github.com/deepinsight): for their [insightface](https://github.com/deepinsight/insightface) project which provided a well-made library and models.
+- and all developers behind libraries used in this project.
